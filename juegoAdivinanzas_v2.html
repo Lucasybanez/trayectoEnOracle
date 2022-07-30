@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>¿Puedes adivinar el número?</h1>
+
+    <div>    
+        <input>
+        <button>Intentar</button>
+        <script>
+        
+            var num = Math.round(Math.random()*10);
+            var intentos = 1;
+            var numIngresado=0;
+            var button= document.querySelector("button");
+            var input= document.querySelector("input");
+
+            function intentar(){
+
+                if (intentos<=3){
+                    numIngresado=input.value;
+                    if(numIngresado==num){
+                        alert("Enhora buena! has ganado");
+                    } else {
+                        alert("Número equivocado, vuelve a intentarlo");
+                        intentos++;
+                    }
+                }
+                else {
+                    alert("Se han acabados los intentos, el número era: " +num );
+                }
+
+            }
+
+            button.onclick = intentar;
+    
+        </script>
+    </div>
+
+</body>
+</html>
