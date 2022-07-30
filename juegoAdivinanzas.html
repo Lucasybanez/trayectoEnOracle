@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>¿Puedes adivinar el número?</h1>
+    <script>
+        
+        var num = Math.round(Math.random()*10);
+        var intentos = 1;
+        var numIngresado=0;
+
+        while (intentos <= 3){
+
+            numIngresado=parseInt(prompt("Ingresa a continuación un número entre 0 y 10"));
+
+            if (numIngresado==num){
+                alert("Felicidades! Acertaste");
+                break;
+            } else {
+                alert("Número equivocado, vuelve a intentarlo");
+                intentos++;
+            }
+
+        } 
+        if (numIngresado==num){
+                document.write("Enhorabuena! Has ganado");
+        } else {
+                document.write("Se han acabado los intentos, suerte en la próxima :c el número era " + num);
+            }
+
+    </script>
+</body>
+</html>
