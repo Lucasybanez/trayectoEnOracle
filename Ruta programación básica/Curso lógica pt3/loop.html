@@ -1,0 +1,33 @@
+<body>
+    <div>
+        <canvas id="Bandera" width="600" height="400"></canvas>
+    </div>
+</body>
+
+
+<script>
+
+
+    var pantalla = document.querySelector("#Bandera");
+    var pincel = pantalla.getContext("2d");
+
+    var pantalla = document.querySelector("canvas");
+    var pincel = pantalla.getContext("2d");
+    pincel.fillStyle = "lightgray";
+    pincel.fillRect(0, 0, 600, 400);
+
+    function dibujarCirculo(x, y, radio, color) {
+
+        pincel.fillStyle = color;
+        pincel.beginPath();
+        pincel.arc(x, y, radio, 0, 2*3.14);
+        pincel.fill();
+    }
+    
+
+    for (var x=50;x<600;x=x+50){
+        dibujarCirculo(x,25,25,"red");
+        dibujarCirculo(x,75,25,"blue");
+    }
+
+</script>
