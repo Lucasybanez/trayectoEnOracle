@@ -1,0 +1,36 @@
+#banner{
+
+    width: 100%;
+    
+}
+
+#secPrincipal{
+    padding: 35px;
+}
+
+h2{
+    text-align: center;
+    background-color: #CCCCCC;
+}
+
+p{
+    text-align: center;
+}
+
+#secDiferenciales{
+    padding: 35px;
+}
+
+ul{
+    display: inline-block;
+    vertical-align: top;
+    width: 20%;
+}
+
+.items{
+    font-style: italic;
+}
+
+#imagenDiferenciales{
+    width: 40%;
+}
