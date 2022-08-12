@@ -1,0 +1,172 @@
+body{
+    background-color: #EFF1FA;
+}
+
+#logo{
+    position: absolute;
+    margin: 20px 0 0 40px;
+
+}
+#ingreso{
+    /* Ingrese el texto aqui */
+
+position: absolute;
+width: 577px;
+height: 48px;
+left: 240px;
+top: 168px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 32px;
+line-height: 150%;
+
+border: none;
+background-color: #EFF1FA;
+
+}
+
+#ingreso::placeholder{
+    color: #0A3871;
+}
+
+#ingreso:focus{
+    outline: none;
+    color: #0A3871;
+}
+
+.forLi{
+    /* Caja */
+    margin: 0 0 0 78%;
+    width: 20%;
+    height: 930px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+    list-style: none;
+
+    /* TEXTO */
+    text-align: center;
+}
+
+.forLi img{
+    margin: 180px 0 0 40px;
+    width: 75%;
+}
+
+.forLi h2{
+    
+font-family: 'Inter';
+font-style: normal;
+font-weight: 700;
+font-size: 24px;
+color: #343A40;
+padding:0 20px 0 20px;
+}
+
+.forLi p{
+    font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+
+color: #495057;
+}
+
+.inferior{
+position: absolute;
+width: 1000px;
+height: 48px;
+left: 240px;
+top: 800px;
+}
+
+.inferior div p{
+    display: inline-block;
+}
+
+.inferior div img{
+    display: inline-block;
+}
+
+.advertencia{
+    /* Solo letras minúsculas y sin acentos */
+
+
+width: 205px;
+height: 18px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 150%;
+/* identical to box height, or 18px */
+
+/* Gray/gray-400 */
+
+color: #495057;
+}
+
+.bEncriptar{
+    /* Button */
+
+
+/* Auto layout */
+
+display: inline-block;
+flex-direction: row;
+align-items: flex-start;
+padding: 24px;
+gap: 8px;
+
+width: 328px;
+height: 67px;
+
+/* Dark blue/dark-blue-300 */
+
+background: #0A3871;
+border: none;
+font-size: 20px;
+border-radius: 24px;
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+flex-grow: 0;
+
+color: white;
+}
+
+.bDesencriptar{
+    box-sizing: border-box;
+
+/* Auto layout */
+
+display: inline-block;
+flex-direction: row;
+align-items: flex-start;
+padding: 24px;
+gap: 8px;
+
+width: 328px;
+height: 67px;
+
+/* Light gray */
+
+background: #D8DFE8;
+/* Dark blue/dark-blue-300 */
+
+border: 1px solid #0A3871;
+color: #0A3871;
+border-radius: 24px;
+font-size: 20px;
+
+/* Inside auto layout */
+
+flex: none;
+order: 1;
+flex-grow: 0;
+}

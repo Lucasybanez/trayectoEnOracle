@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main>
+
+        <H1 id="logo"><img src="logo.png" alt="Logo alura"></H1>
+        <input id="ingreso" type="text" placeholder="Ingrese el texto aquí">
+
+        <ul>
+            <li class="forLi">
+                <img src="boy.png" alt="">
+                <h2>Ningún mensaje fue encontrado</h2>
+                <p>Ingrese el mensaje que desee encriptar o desencriptar</p>
+            </li>
+        </ul>
+
+        <div class="inferior">
+            <div>
+                <img src="advertencia.png" alt="">
+                <p class="advertencia">Solo letras minúsculas y sin acentos</p>
+            </div>
+            
+            <button class="bEncriptar" id="bEncrip">Encriptar</button>
+            <button class="bDesencriptar" id="bDesencrip">Desencriptar</button>
+
+            <script>
+
+                var botonEncrip = document.getElementById("bEncrip");
+                var botonDesencrip = document.getElementById("bDesencrip");
+                var mensaje = document.querySelector("input");
+                var newMensaje= "Pepito";
+
+                function encriptar(){
+
+                    newMensaje=mensaje.value.replace(/e/g, "enter");
+                    newMensaje=newMensaje.replace(/i/g, "imes");
+                    newMensaje=newMensaje.replace(/a/g, "ai");
+                    newMensaje=newMensaje.replace(/o/g, "ober");
+                    newMensaje=newMensaje.replace(/u/g, "ufat");
+
+                    alert(newMensaje);
+
+                }
+
+                function desencriptar(){
+
+                newMensaje=mensaje.value.replace(/enter/g, "e");
+                newMensaje=newMensaje.replace(/imes/g, "i");
+                newMensaje=newMensaje.replace(/ai/g, "a");
+                newMensaje=newMensaje.replace(/ober/g, "o");
+                newMensaje=newMensaje.replace(/ufat/g, "u");
+
+                alert(newMensaje);
+
+                }
+
+                botonEncrip.onclick= encriptar;
+                botonDesencrip.onclick= desencriptar;
+
+            </script>
+        </div>
+
+    </main>
+
+</body>
+</html>
