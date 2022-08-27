@@ -14,13 +14,13 @@
     <main>
 
         <H1 id="logo"><img src="logo.png" alt="Logo alura"></H1>
-        <input id="ingreso" type="text" placeholder="Ingrese el texto aquí">
+        <textarea id="ingreso" type="text" placeholder="Ingrese el texto aquí"></textarea>
 
         <ul>
             <li class="forLi">
-                <img src="boy.png" alt="">
-                <h2>Ningún mensaje fue encontrado</h2>
-                <p>Ingrese el mensaje que desee encriptar o desencriptar</p>
+                <img id="imgBoy" src="boy.png" alt="">
+                <h2 id="titMensaje">Ningún mensaje fue encontrado</h2>
+                <p id="mensajeFinal">Ingrese el mensaje que desee encriptar o desencriptar</p>
             </li>
         </ul>
 
@@ -37,10 +37,32 @@
 
                 var botonEncrip = document.getElementById("bEncrip");
                 var botonDesencrip = document.getElementById("bDesencrip");
-                var mensaje = document.querySelector("input");
+                var mensaje = document.querySelector("textarea");
                 var newMensaje= "Pepito";
 
+                let filtrar=true;
+                var reg = new RegExp(/[0-9A-Zá-ý]/g);
+
+                function filtro() {
+
+                    if(mensaje.value.match(reg)) {
+                        alert("Solo letras minúsculas y sin acentos ( ´ )");
+                        filtrar = false;
+                    } else if(mensaje.value == "") {
+                        alert("Por favor ingrese texto");
+                        filtrar = false;
+                    }
+                    else{
+                        filtrar=true;
+                    }
+                    
+                }
+
                 function encriptar(){
+
+                    filtro();
+
+                    if(filtrar==true){
 
                     newMensaje=mensaje.value.replace(/e/g, "enter");
                     newMensaje=newMensaje.replace(/i/g, "imes");
@@ -48,8 +70,12 @@
                     newMensaje=newMensaje.replace(/o/g, "ober");
                     newMensaje=newMensaje.replace(/u/g, "ufat");
 
-                    alert(newMensaje);
+                    document.getElementById("mensajeFinal").innerHTML=newMensaje;
+                    document.getElementById("titMensaje").innerHTML="El mensaje encontrado fué:";
+                    document.getElementById("imgBoy").style.display = 'none';
+                    }
 
+                    
                 }
 
                 function desencriptar(){
@@ -60,7 +86,7 @@
                 newMensaje=newMensaje.replace(/ober/g, "o");
                 newMensaje=newMensaje.replace(/ufat/g, "u");
 
-                alert(newMensaje);
+                document.getElementById("mensajeFinal").innerHTML=newMensaje;
 
                 }
 
@@ -73,4 +99,8 @@
     </main>
 
 </body>
+
+<footer>
+    <h2>Página realizada por Lucas G. Ybañez</h2>
+</footer>
 </html>

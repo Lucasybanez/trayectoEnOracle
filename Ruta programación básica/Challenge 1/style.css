@@ -1,5 +1,6 @@
 body{
     background-color: #EFF1FA;
+    margin: 0;
 }
 
 #logo{
@@ -11,8 +12,8 @@ body{
     /* Ingrese el texto aqui */
 
 position: absolute;
-width: 577px;
-height: 48px;
+width: 903px;
+height: 443px;
 left: 240px;
 top: 168px;
 
@@ -21,6 +22,8 @@ font-style: normal;
 font-weight: 400;
 font-size: 32px;
 line-height: 150%;
+
+
 
 border: none;
 background-color: #EFF1FA;
@@ -45,13 +48,14 @@ background-color: #EFF1FA;
     border-radius: 15px;
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
     list-style: none;
+    padding: 20px 10px 0 10px;
 
     /* TEXTO */
     text-align: center;
 }
 
 .forLi img{
-    margin: 180px 0 0 40px;
+    margin: 160px 0 0 40px;
     width: 75%;
 }
 
@@ -169,4 +173,78 @@ font-size: 20px;
 flex: none;
 order: 1;
 flex-grow: 0;
+}
+
+footer {
+    height: 150px;
+    background-color: #0A3871;
+    color: white;
+    text-align: center;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+footer h2{
+    padding: 65px 0 0;
+}
+
+
+@media screen and (max-width:480px){
+
+    #logo{
+        position: absolute;
+        left: 1%;
+        right: 1%;
+        top: 1%;
+        bottom: 1%;
+    }
+
+    #ingreso{
+        position: absolute;
+        width: 343px;
+        height: 624px;
+        left: 16px;
+        top: 152px;
+
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 32px;
+        line-height: 150%;
+    }
+
+    .inferior {
+        position: absolute;
+        width: 100px;
+        height: 48px;
+        left: 240px;
+        top: 800px;
+    }
+
+    ul{
+        padding: 0%;
+        margin: 10px;
+    }
+
+    .forLi {
+        margin: 1050px 0 0 0;
+        width: 95%;
+        height: 930px;
+        background-color: white;
+        border-radius: 15px;
+        box-shadow: 10px 10px 10px rgb(0 0 0 / 10%);
+        list-style: none;
+        /* padding: 20px 10px 0 10px; */
+    }
+
+    .inferior{
+            position: absolute;
+            left: 12%;
+            right: 0;
+            top: 92%;
+            bottom: 100%;
+    }
+
+    .inferior button{
+        margin: 5px 0;
+    }
 }
