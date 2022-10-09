@@ -1,35 +1,107 @@
 //Variables
-let palabras=["HTML","CSS","SHELDON","TED","ELPEPE"];
+
+let palabras=["SHELDON","GATO"];
 let palabraSecreta;
+let vidas=9;
 let letrasErroneas=[];
-let primeraVez=true;
+var aciertos=0;
 var reg = new RegExp(/[0-9  a-z  á-ý  Á-Ý  ]/g);
+
 
 //Conecta la parte lógica con la parte visual
 var btnNuevoJuego=document.getElementById("btnNuevoJuego");
 var lienzo=document.getElementById("Guiones").getContext("2d");
+var lienzoHorca=document.getElementById("Horca").getContext("2d");
 
 //Captura los eventos del teclado
 
 addEventListener('keypress',(e)=>{
-    console.log(e);
 
-    if(filtro(e.key)==true){
+    if(vidas>=0){
+        if(filtro(e.key)==true){
         
-        if(verificar(e.key)==true){
-            // LLAMAR FUNCIÓN DIBUJAR LETRA CORRECTA
-            alert("CORRECTO");
-            dibujarLetraCorrecta(e.key);
-        } else {
-            alert("La letra ingresada es incorrecta");
-            // LLAMAR FUNCIÓN DIBUJAR LETRA INCORRECTA
+            if(verificar(e.key)==true){
+                dibujarLetraCorrecta(e.key);
+                aciertos++;
+            } else {
+                dibujarLetraIncorrecta();
+            }
+    
         }
-
-    } else {
-        alert("Solo letras mayúsculas y sin acentos ( ´ )");
     }
     
 })
+// DIBUJO DE LA HORCA
+
+function dibujarHorca(vidasRestantes){
+
+    lienzoHorca.beginPath();
+    lienzoHorca.lineWidth=5;
+    lienzoHorca.lineCap="round";
+    lienzoHorca.lineJoin="round";
+    lienzoHorca.strokeStyle="#0A3871";
+
+    switch(vidasRestantes){
+        case 9:
+            //Trazo base
+            lienzoHorca.moveTo(240,450);
+            lienzoHorca.lineTo(960,450);
+            break;
+        case 8:
+            // Trazo palo vertical
+            lienzoHorca.moveTo(480,450);
+            lienzoHorca.lineTo(480,50);
+            break;
+        case 7:
+            // Trazo palo horizontal
+            lienzoHorca.moveTo(480,50);
+            lienzoHorca.lineTo(650,50);
+            break;
+        case 6:
+            // Trazo palo vertical corto
+            lienzoHorca.moveTo(650,50);
+            lienzoHorca.lineTo(650,100);
+            break;
+        case 5:
+            // CABEZA
+            lienzoHorca.lineWidth=70;
+            lienzoHorca.moveTo(650,130);
+            lienzoHorca.lineTo(650,130);
+            break;
+        case 4:
+            // TORSO
+            lienzoHorca.moveTo(650,130);
+            lienzoHorca.lineTo(650,300);
+            break;
+        case 3:
+            // BRAZO IZQUIERDO
+            lienzoHorca.moveTo(650,180);
+            lienzoHorca.lineTo(620,240);
+            break;
+        case 2:
+            // BRAZO DERECHO
+            lienzoHorca.moveTo(650,180);
+            lienzoHorca.lineTo(680,240);
+            break;
+        case 1:
+            //PIERNA DERECHA
+            lienzoHorca.moveTo(650,300);
+            lienzoHorca.lineTo(680,360);
+            break;
+        case 0:
+            //PIERNA IZQUIERDA
+            lienzoHorca.moveTo(650,300);
+            lienzoHorca.lineTo(620,360); 
+            alert("Fin del juego, la palabra era: "+palabraSecreta);
+            break;
+                                                                                                          
+    }
+
+    lienzoHorca.stroke();
+    lienzoHorca.closePath();
+    vidas=vidas-1;
+}
+
 
 //Filtro que detecta mayúsculas y acentos
 
@@ -61,23 +133,16 @@ function verificar(letra) {
 
     if(resultadoPrueba==false){
 
-        if(primeraVez==true){
-            primeraVez=false;
-            letrasErroneas[letrasErroneas.length]=letra;
+        for (let i=0; i<letrasErroneas.length; i++){
+            if (letra==letrasErroneas[i]){
+                yaExiste=true;
+                alert("Ya ingresaste esta letra");
+            }
         }
 
-        else {
-
-            for (let i=0; i<letrasErroneas.length; i++){
-                if (letra==letrasErroneas[i]){
-                    yaExiste=true;
-                    alert("Ya ingresaste esta letra");
-                }
-            }
-
-            if(yaExiste==false){
-                letrasErroneas[letrasErroneas.length]=letra;
-            }
+        if(yaExiste==false){
+            letrasErroneas[letrasErroneas.length]=letra;
+            dibujarHorca(vidas);
         }
 
     }
@@ -87,8 +152,14 @@ function verificar(letra) {
 
 // Constructor
 function init(){
+
+    letrasErroneas=[];
+    vidas=9;
     generarPalabra();
+    limpiarLienzo(lienzo,1000);
+    limpiarLienzo(lienzoHorca,2000);
     dibujarGuiones();
+    dibujarLetraIncorrecta();
 }
 
 //Almacena las palabras y elige una aleatoriamente
@@ -98,7 +169,6 @@ function generarPalabra(){
 
     let num = Math.floor(Math.random() * palabras.length);;
     palabraSecreta=palabras[num];
-    
     
 }
 
@@ -142,8 +212,33 @@ function dibujarLetraCorrecta(letra){
 
 }
 
+function limpiarLienzo(lienzoALimpiar, ancho){
+
+        lienzoALimpiar.lineWidth=ancho;
+        lienzoALimpiar.strokeStyle="#F3F5FC";
+        //lienzo.strokeStyle=color;
+        lienzoALimpiar.beginPath();
+        lienzoALimpiar.moveTo(1100,180);
+        lienzoALimpiar.lineTo(0,180);
+        lienzoALimpiar.stroke();
+        lienzoALimpiar.closePath();
+
+}
 // DIBUJAR LETRA INCORRECTA
-function dibujarLetraIncorrecta(){}
+function dibujarLetraIncorrecta(){
+
+    limpiarLienzo(lienzo,100);
+
+    lienzo.font = "20px Arial";
+
+    let anchura=500/letrasErroneas.length;
+
+    for(let i=0; i<letrasErroneas.length;i++){
+        
+        lienzo.fillText(letrasErroneas[i], 375+anchura*i, 160);
+    }
+
+}
 
 init();
 btnNuevoJuego.onclick=init;

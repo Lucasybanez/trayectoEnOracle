@@ -3,7 +3,7 @@ body{
 }
 
 header{
-    padding: 2%;
+    padding: 2% 2% 0 2%;
 }
 
 .cont-primerInterfaz{
@@ -65,7 +65,8 @@ header{
 }
 
 .area-ahorcado{
-    padding: 10%;
+    width: 1200px;
+    margin: 0 auto;
 }
 
 .area-letras{
