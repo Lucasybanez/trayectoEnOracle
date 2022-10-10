@@ -60,13 +60,12 @@ header{
 #pantalla2{
     display: flex;
     flex-direction: column;
-    width: 80%;
     margin: 0 auto;
 }
 
 .area-ahorcado{
-    width: 1200px;
-    margin: 0 auto;
+    display: flex;
+    justify-content: center;
 }
 
 .area-letras{
@@ -83,4 +82,16 @@ header{
 
 .conteiner button{
     height: auto;
+}
+
+footer {
+    margin: 10% 0 0;
+    background-color: #0A3871;
+    color: white;
+    text-align: center;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+footer h2{
+    padding: 30px;
 }

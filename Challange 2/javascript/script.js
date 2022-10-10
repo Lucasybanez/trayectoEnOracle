@@ -1,7 +1,7 @@
 //Variables
 
-//let palabras=["LUCAS","ABRIL","GABRIEL","CRISTINA","CESAR","VERONICA","ULISES","MELINA","CELESTE","BUYINA","ALFONSINA","CARLOS","ROSA","PEPE","FELICITAS","RITA","JOSE","TOMAS","SANTIAGO","VALENTIN","NESTOR","NELLY"];
-let palabras=["SHELDON","GATO"];
+let palabras=["LUCAS","ABRIL","GABRIEL","CRISTINA","CESAR","VERONICA","ULISES","MELINA","CELESTE","BUYINA","ALFONSINA","CARLOS","ROSA","PEPE","FELICITAS","RITA","JOSE","TOMAS","SANTIAGO","VALENTIN","NESTOR","NELLY"];
+//let palabras=["SHELDON","GATO"];
 let palabraSecreta;
 let vidas=9;
 let letrasErroneas=[];
@@ -24,7 +24,6 @@ addEventListener('keypress',(e)=>{
         
             if(verificar(e.key)==true){
                 dibujarLetraCorrecta(e.key);
-                aciertos++;
 
                 if(aciertos==palabraSecreta.length){
                     dibujarMensajeFinal("win");
@@ -53,54 +52,54 @@ function dibujarHorca(vidasRestantes){
     switch(vidasRestantes){
         case 9:
             //Trazo base
-            lienzoHorca.moveTo(240,450);
-            lienzoHorca.lineTo(960,450);
+            lienzoHorca.moveTo(5,450);
+            lienzoHorca.lineTo(60,450);
             break;
         case 8:
             // Trazo palo vertical
-            lienzoHorca.moveTo(480,450);
-            lienzoHorca.lineTo(480,50);
+            lienzoHorca.moveTo(30,450);
+            lienzoHorca.lineTo(30,50);
             break;
         case 7:
             // Trazo palo horizontal
-            lienzoHorca.moveTo(480,50);
-            lienzoHorca.lineTo(650,50);
+            lienzoHorca.moveTo(30,50);
+            lienzoHorca.lineTo(160,50);
             break;
         case 6:
             // Trazo palo vertical corto
-            lienzoHorca.moveTo(650,50);
-            lienzoHorca.lineTo(650,100);
+            lienzoHorca.moveTo(160,50);
+            lienzoHorca.lineTo(160,100);
             break;
         case 5:
             // CABEZA
             lienzoHorca.lineWidth=70;
-            lienzoHorca.moveTo(650,130);
-            lienzoHorca.lineTo(650,130);
+            lienzoHorca.moveTo(160,130);
+            lienzoHorca.lineTo(160,130);
             break;
         case 4:
             // TORSO
-            lienzoHorca.moveTo(650,130);
-            lienzoHorca.lineTo(650,300);
+            lienzoHorca.moveTo(160,130);
+            lienzoHorca.lineTo(160,300);
             break;
         case 3:
             // BRAZO IZQUIERDO
-            lienzoHorca.moveTo(650,180);
-            lienzoHorca.lineTo(620,240);
+            lienzoHorca.moveTo(160,180);
+            lienzoHorca.lineTo(130,240);
             break;
         case 2:
             // BRAZO DERECHO
-            lienzoHorca.moveTo(650,180);
-            lienzoHorca.lineTo(680,240);
+            lienzoHorca.moveTo(160,180);
+            lienzoHorca.lineTo(190,240);
             break;
         case 1:
             //PIERNA DERECHA
-            lienzoHorca.moveTo(650,300);
-            lienzoHorca.lineTo(680,360);
+            lienzoHorca.moveTo(160,300);
+            lienzoHorca.lineTo(190,360);
             break;
         case 0:
             //PIERNA IZQUIERDA
-            lienzoHorca.moveTo(650,300);
-            lienzoHorca.lineTo(620,360); 
+            lienzoHorca.moveTo(160,300);
+            lienzoHorca.lineTo(130,360); 
             dibujarMensajeFinal("Lose");
             break;
                                                                                                           
@@ -218,11 +217,11 @@ function dibujarGuiones(){
 
     lienzo.beginPath();
 
-    let anchura= 600/palabraSecreta.length;
+    let anchura= 300/palabraSecreta.length;
 
     for(let i=0; i<palabraSecreta.length;i++){
-        lienzo.moveTo(350+(anchura*i),100);
-        lienzo.lineTo(400+(anchura*i),100);
+        lienzo.moveTo(5+(anchura*i),100);
+        lienzo.lineTo(30+(anchura*i),100);
     }
 
     lienzo.stroke();
@@ -234,14 +233,14 @@ function dibujarGuiones(){
 
 function dibujarLetraCorrecta(letra){
 
-    lienzo.font = "50px Arial";
-
-    let anchura=600/palabraSecreta.length;
+    lienzo.font = "40px Arial";
+    let anchura=300/palabraSecreta.length;
 
     for(let i=0; i<palabraSecreta.length;i++){
         
         if(letra==palabraSecreta[i]){
-            lienzo.fillText(palabraSecreta[i], 355+anchura*i, 90);
+            lienzo.fillText(palabraSecreta[i], 5+anchura*i, 90);
+            aciertos++;
         }
         
     }
@@ -255,12 +254,12 @@ function dibujarMensajeFinal(estado){
     if (estado=="win"){
         
         lienzoHorca.fillStyle="#3E9E0B";
-        lienzoHorca.font= "50px Arial";
-        lienzoHorca.fillText("Felicidades! Ganaste",370,520);
+        lienzoHorca.font= "30px Arial";
+        lienzoHorca.fillText("Felicidades! Ganaste",10,520);
     } else {
         lienzoHorca.fillStyle="#FF3131";
-        lienzoHorca.font= "50px Arial";
-        lienzoHorca.fillText("Has perdido!",470,520);
+        lienzoHorca.font= "30px Arial";
+        lienzoHorca.fillText("Has perdido!",75,520);
     }
 }
 
@@ -283,11 +282,11 @@ function dibujarLetraIncorrecta(){
 
     lienzo.font = "20px Arial";
 
-    let anchura=500/letrasErroneas.length;
+    let anchura=300/letrasErroneas.length;
 
     for(let i=0; i<letrasErroneas.length;i++){
         
-        lienzo.fillText(letrasErroneas[i], 375+anchura*i, 160);
+        lienzo.fillText(letrasErroneas[i], 15+anchura*i, 160);
     }
 
 }
