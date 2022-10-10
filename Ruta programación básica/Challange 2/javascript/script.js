@@ -1,9 +1,11 @@
 //Variables
 
+//let palabras=["LUCAS","ABRIL","GABRIEL","CRISTINA","CESAR","VERONICA","ULISES","MELINA","CELESTE","BUYINA","ALFONSINA","CARLOS","ROSA","PEPE","FELICITAS","RITA","JOSE","TOMAS","SANTIAGO","VALENTIN","NESTOR","NELLY"];
 let palabras=["SHELDON","GATO"];
 let palabraSecreta;
 let vidas=9;
 let letrasErroneas=[];
+let letrasGanadas=[];
 var aciertos=0;
 var reg = new RegExp(/[0-9  a-z  á-ý  Á-Ý  ]/g);
 
@@ -17,18 +19,25 @@ var lienzoHorca=document.getElementById("Horca").getContext("2d");
 
 addEventListener('keypress',(e)=>{
 
-    if(vidas>=0){
+    if(vidas>=0 && aciertos!=palabraSecreta.length){
         if(filtro(e.key)==true){
         
             if(verificar(e.key)==true){
                 dibujarLetraCorrecta(e.key);
                 aciertos++;
+
+                if(aciertos==palabraSecreta.length){
+                    dibujarMensajeFinal("win");
+                }
+
             } else {
                 dibujarLetraIncorrecta();
             }
     
         }
     }
+
+
     
 })
 // DIBUJO DE LA HORCA
@@ -92,7 +101,7 @@ function dibujarHorca(vidasRestantes){
             //PIERNA IZQUIERDA
             lienzoHorca.moveTo(650,300);
             lienzoHorca.lineTo(620,360); 
-            alert("Fin del juego, la palabra era: "+palabraSecreta);
+            dibujarMensajeFinal("Lose");
             break;
                                                                                                           
     }
@@ -110,6 +119,7 @@ function filtro(letra){
 
     if(letra.match(reg)) {
         resultadoPrueba=false;
+        alert("Sólo se permiten letras Mayúsculas y sin acento");
         return resultadoPrueba;
     } else {
         resultadoPrueba=true;
@@ -123,7 +133,11 @@ function filtro(letra){
 function verificar(letra) {
 
     let resultadoPrueba=false;
+    let correctaRepetida=false;
     let yaExiste=false;
+
+
+    // VERIFICA SI LA LETRA ES CORRECTA
 
     for (let i=0; i<palabraSecreta.length; i++){
         if (letra==palabraSecreta[i]){
@@ -131,12 +145,32 @@ function verificar(letra) {
         }
     }
 
-    if(resultadoPrueba==false){
+    // VERIFICA SI LA LETRA CORRECTA YA FUÉ INGRESADA
+
+    if(resultadoPrueba==true){
+
+
+        for (let i=0; i<letrasGanadas.length; i++){
+            if (letra==letrasGanadas[i]){
+                correctaRepetida=true;
+                resultadoPrueba=false;
+            }
+        }
+    
+        if(correctaRepetida==false){
+            letrasGanadas[letrasGanadas.length]=letra;
+        }
+    }
+
+    
+
+    // VERIFICA SI LA LETRA ERRONEA YA FUÉ INGRESADA
+
+    if(resultadoPrueba==false && correctaRepetida==false){
 
         for (let i=0; i<letrasErroneas.length; i++){
             if (letra==letrasErroneas[i]){
                 yaExiste=true;
-                alert("Ya ingresaste esta letra");
             }
         }
 
@@ -150,10 +184,12 @@ function verificar(letra) {
     return resultadoPrueba;
 }
 
-// Constructor
+// INICIAR JUEGO
 function init(){
 
+    aciertos=0;
     letrasErroneas=[];
+    letrasGanadas=[];
     vidas=9;
     generarPalabra();
     limpiarLienzo(lienzo,1000);
@@ -210,6 +246,22 @@ function dibujarLetraCorrecta(letra){
         
     }
 
+}
+
+// DIBUJAR MENSAJES GANADOR Y DERROTA
+
+function dibujarMensajeFinal(estado){
+    
+    if (estado=="win"){
+        
+        lienzoHorca.fillStyle="#3E9E0B";
+        lienzoHorca.font= "50px Arial";
+        lienzoHorca.fillText("Felicidades! Ganaste",370,520);
+    } else {
+        lienzoHorca.fillStyle="#FF3131";
+        lienzoHorca.font= "50px Arial";
+        lienzoHorca.fillText("Has perdido!",470,520);
+    }
 }
 
 function limpiarLienzo(lienzoALimpiar, ancho){
