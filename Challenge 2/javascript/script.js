@@ -12,6 +12,7 @@ var reg = new RegExp(/[0-9  a-z  á-ý  Á-Ý  ]/g);
 
 //Conecta la parte lógica con la parte visual
 var btnNuevoJuego=document.getElementById("btnNuevoJuego");
+var btnRendir=document.getElementById("btnRendir");
 var lienzo=document.getElementById("Guiones").getContext("2d");
 var lienzoHorca=document.getElementById("Horca").getContext("2d");
 
@@ -183,6 +184,15 @@ function verificar(letra) {
     return resultadoPrueba;
 }
 
+// RENDIRSE
+function rendirse(){
+
+    vidas=9;
+    for(i=0;i<=9;i++){
+        dibujarHorca(vidas);
+    }
+}
+
 // INICIAR JUEGO
 function init(){
 
@@ -293,3 +303,4 @@ function dibujarLetraIncorrecta(){
 
 init();
 btnNuevoJuego.onclick=init;
+btnRendir.onclick=rendirse;
